@@ -169,3 +169,15 @@ This file records choices that could reasonably have gone another way. Each choi
 **Evidence:** Removing `repeat_items_prev_day` cut a controlled probe from 20.46 to 3.46 seconds. The one index reduced the full rewrite from 12–13 seconds to a 6.326-second median. It costs 40.6 MB in the supplied database.
 
 **Reversal trigger:** Replace it with incremental aggregates if ledger insert latency or WAL growth breaches its production budget, or if report volume grows enough to push the indexed query back over 10 seconds.
+
+## D-15 - Preserve concurrent sync edits as explicit conflicts
+
+**Context:** The adapter has no field-level base snapshot, so it cannot tell whether concurrent local and ERP changes are safely mergeable. The old 409 handler overwrote the ERP with the local payload.
+
+**Options:** (a) local wins, (b) remote wins, (c) merge dictionaries, or (d) preserve both and require resolution.
+
+**Chose:** Option (d). Version changes create a conflict record containing both payloads. Push skips unresolved conflicts.
+
+**Evidence:** The supplied scenario changes price locally and UOM remotely. Blind local-wins loses the UOM; remote-wins loses the price; a dictionary merge has no base value to distinguish independent edits from competing edits. Preserving both is the only lossless option under the current contract.
+
+**Reversal trigger:** Add automatic field-level merge only after the store retains the common base payload and each field has an approved merge policy.

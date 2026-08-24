@@ -55,6 +55,16 @@ python bench_report.py check --db ../data/perf.sqlite --sql report_optimized.sql
 
 The submitted full-window median is 6.326 seconds. All 8,666 rows match the reference exactly, and the report adds nearest-rank `p95_latency_ms`.
 
+Run the Task 5 sync tests and scenario:
+
+```bash
+python -m unittest tests.test_sync -v
+cd starter/sync
+python run_sync.py
+```
+
+The scenario finishes with 60 remote and local records, no duplicate logical writes, and one preserved concurrent-edit conflict.
+
 ## Tool use and review
 
 I used ChatGPT for planning, implementation support, and editing. I reviewed the code, checked the source evidence behind the analysis, ran the tests and evaluation, and take responsibility for every submitted decision and result.

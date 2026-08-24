@@ -40,14 +40,19 @@ def scenario():
 def main():
     erp, store, pulled, pushed = scenario()
     print(f"pulled={pulled} pushed={pushed} "
-          f"remote={len(erp.records)} local={len(store.records)}")
+          f"remote={len(erp.records)} local={len(store.records)} "
+          f"conflicts={len(store.conflicts)}")
 
     failures = []
 
     # INV1: after a full sync, every remote record exists locally at the remote version
     missing = [eid for eid in erp.records if eid not in store.records]
+    # A deliberate conflict keeps both versions, so version drift is only a
+    # failure when it is not represented in the conflict queue.
     stale = [eid for eid, r in erp.records.items()
-             if eid in store.records and store.records[eid].remote_version != r.version]
+             if eid in store.records
+             and eid not in store.conflicts
+             and store.records[eid].remote_version != r.version]
     if missing:
         failures.append(f"INV1 missing locally: {len(missing)} records e.g. {missing[:5]}")
     if stale:
@@ -66,6 +71,8 @@ def main():
     remote_11 = erp.records["EXT-0011"].payload
     if remote_11.get("uom") != "Box":
         failures.append(f"INV3 remote edit clobbered: EXT-0011 payload is {remote_11}")
+    if "EXT-0011" not in store.conflicts:
+        failures.append("INV3 concurrent edit was not placed in the conflict queue")
 
     if failures:
         print("\nFAILURES")
