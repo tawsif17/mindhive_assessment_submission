@@ -1,0 +1,13 @@
+{
+  "baseline_estimate_seconds": 7722.7,
+  "exact_reference_match": true,
+  "index_build_seconds": 1.3976,
+  "index_growth_bytes": 40603648,
+  "output_rows": 8666,
+  "query_seconds": {
+    "max": 6.437,
+    "median": 6.326,
+    "min": 6.194,
+    "repetitions": 5
+  }
+}

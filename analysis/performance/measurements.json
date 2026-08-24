@@ -1,0 +1,108 @@
+{
+  "ablations": {
+    "all_metrics": {
+      "max_s": 20.460417499998584,
+      "median_s": 20.460417499998584,
+      "min_s": 20.460417499998584,
+      "rows": 4
+    },
+    "without_accepted_disabled": {
+      "max_s": 20.285550700034946,
+      "median_s": 20.285550700034946,
+      "min_s": 20.285550700034946,
+      "rows": 4
+    },
+    "without_avg_accept_score": {
+      "max_s": 20.586638599867,
+      "median_s": 20.586638599867,
+      "min_s": 20.586638599867,
+      "rows": 4
+    },
+    "without_avg_latency_ms": {
+      "max_s": 20.080123499967158,
+      "median_s": 20.080123499967158,
+      "min_s": 20.080123499967158,
+      "rows": 4
+    },
+    "without_candidates_considered": {
+      "max_s": 21.098648800048977,
+      "median_s": 21.098648800048977,
+      "min_s": 21.098648800048977,
+      "rows": 4
+    },
+    "without_distinct_customers": {
+      "max_s": 20.757661800133064,
+      "median_s": 20.757661800133064,
+      "min_s": 20.757661800133064,
+      "rows": 4
+    },
+    "without_lines_accepted": {
+      "max_s": 19.976170799927786,
+      "median_s": 19.976170799927786,
+      "min_s": 19.976170799927786,
+      "rows": 4
+    },
+    "without_max_latency_ms": {
+      "max_s": 20.01482110004872,
+      "median_s": 20.01482110004872,
+      "min_s": 20.01482110004872,
+      "rows": 4
+    },
+    "without_repeat_items_prev_day": {
+      "max_s": 3.459331399993971,
+      "median_s": 3.459331399993971,
+      "min_s": 3.459331399993971,
+      "rows": 4
+    }
+  },
+  "scaling": {
+    "four_days_one_tenant": {
+      "max_s": 34.413141399854794,
+      "median_s": 34.413141399854794,
+      "min_s": 34.413141399854794,
+      "rows": 16
+    },
+    "one_day_all_tenants": {
+      "max_s": 144.08655359991826,
+      "median_s": 144.08655359991826,
+      "min_s": 144.08655359991826,
+      "rows": 144
+    },
+    "one_day_four_tenants": {
+      "max_s": 32.84238229994662,
+      "median_s": 32.84238229994662,
+      "min_s": 32.84238229994662,
+      "rows": 16
+    },
+    "one_day_heavy_tenant": {
+      "max_s": 19.46234739990905,
+      "median_s": 19.46234739990905,
+      "min_s": 19.46234739990905,
+      "rows": 4
+    },
+    "one_day_light_tenant": {
+      "max_s": 17.241355599835515,
+      "median_s": 17.241355599835515,
+      "min_s": 17.241355599835515,
+      "rows": 2
+    },
+    "one_day_two_tenants": {
+      "max_s": 23.32373040006496,
+      "median_s": 23.32373040006496,
+      "min_s": 23.32373040006496,
+      "rows": 8
+    },
+    "two_days_all_tenants": {
+      "max_s": 270.396902800072,
+      "median_s": 270.396902800072,
+      "min_s": 270.396902800072,
+      "rows": 293
+    },
+    "two_days_one_tenant": {
+      "max_s": 24.415582899935544,
+      "median_s": 24.415582899935544,
+      "min_s": 24.415582899935544,
+      "rows": 8
+    }
+  }
+}

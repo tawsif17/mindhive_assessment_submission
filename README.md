@@ -44,6 +44,17 @@ The final out-of-fold result made 24 automatic matches. All 24 were correct. Cov
 
 The frozen holdout output contains 300 rows: 14 `auto`, 207 `review`, and 79 `reject`. The file passed schema, ownership, item-state, score-range, candidate-count, row-count, and determinism checks.
 
+Run the Task 4 report benchmark:
+
+```bash
+python starter/make_perf_db.py --out data/perf.sqlite
+python starter/apply_report_indexes.py --db data/perf.sqlite
+cd starter
+python bench_report.py check --db ../data/perf.sqlite --sql report_optimized.sql --repeat 5 --budget-s 10
+```
+
+The submitted full-window median is 6.326 seconds. All 8,666 rows match the reference exactly, and the report adds nearest-rank `p95_latency_ms`.
+
 ## Tool use and review
 
 I used ChatGPT for planning, implementation support, and editing. I reviewed the code, checked the source evidence behind the analysis, ran the tests and evaluation, and take responsibility for every submitted decision and result.

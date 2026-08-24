@@ -157,3 +157,15 @@ This file records choices that could reasonably have gone another way. Each choi
 **Evidence:** `evaluate.py` now exits non-zero when a metric crosses the committed limit. Unit tests cover metric and training-hash failures.
 
 **Reversal trigger:** A baseline changes only with a reviewed data or policy change recorded in this log.
+
+## D-14 - Add one report index instead of materializing the dashboard
+
+**Context:** The grouped rewrite was correct but took 12–13 seconds without an index. The 10-second budget still had to be met without making a live dashboard stale.
+
+**Options:** (a) materialize the report, (b) add several covering indexes, or (c) add one index for the measured previous-day item bottleneck.
+
+**Chose:** Option (c). The migration adds `(tenant_id, day, item_code)` on `match_event`. The report remains a live query.
+
+**Evidence:** Removing `repeat_items_prev_day` cut a controlled probe from 20.46 to 3.46 seconds. The one index reduced the full rewrite from 12–13 seconds to a 6.326-second median. It costs 40.6 MB in the supplied database.
+
+**Reversal trigger:** Replace it with incremental aggregates if ledger insert latency or WAL growth breaches its production budget, or if report volume grows enough to push the indexed query back over 10 seconds.
