@@ -65,6 +65,8 @@ python run_sync.py
 
 The scenario finishes with 60 remote and local records, no duplicate logical writes, and one preserved concurrent-edit conflict.
 
+Task 6's production scaling and staged rollout plan is in `SCALE.md`. It keeps tenant indexes versioned, quarantines new alias evidence, and uses shadow evaluation before tenant-level canaries.
+
 ## Tool use and review
 
 I used ChatGPT for planning, implementation support, and editing. I reviewed the code, checked the source evidence behind the analysis, ran the tests and evaluation, and take responsibility for every submitted decision and result.
