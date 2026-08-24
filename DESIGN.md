@@ -27,6 +27,8 @@ This break-even point is an economic floor. It is not the release target. The fi
 - No cross-tenant, disabled-item, or misc-row automatic match is made.
 - Net cost is used to choose between score limits that pass the safety rules.
 
+The uncertainty rule remains the normal policy. A small-sample fallback was accepted after the error review. It is used only when no point passes the uncertainty rule. The fallback requires 100% observed out-of-fold precision. It also requires zero hard safety violations and p95 latency below 250 ms. The Wilson result is still reported. This accepts more uncertainty. It does not accept a known wrong automatic match.
+
 The final score limit will be selected from out-of-fold training results. Each row will be predicted by a version that was not fitted on that row. The limit will not be selected from the same predictions used to fit scoring values.
 
 The order-operations owner will own the precision and review policy. Engineering will measure the options and apply the approved setting. The policy should be reviewed when error costs, review capacity, or customer risk changes.
@@ -65,7 +67,7 @@ AUTO / REVIEW / REJECT
 |---|---|
 | Normalisation | Text, codes, barcode, size, pack, and UOM fields are parsed in a fixed way. The original input is kept. |
 | Tenant catalogue | Only rows owned by the input tenant are loaded. Disabled and misc rows are excluded from normal search indexes. |
-| Identifier evidence | Barcode, item code, part number, and customer alias are checked. An identifier is strong only when one safe active target remains. |
+| Identifier evidence | Barcode, item code, part number, and trusted customer aliases are checked. A strong identifier can answer directly only when one safe active target remains. |
 | Candidate retrieval | Text and structured fields are used to find likely items. The correct item should be placed in the top three where possible. |
 | Candidate scoring | Brand, family, size, pack, UOM, price, text, and alias quality are compared. Scores are kept as evidence, not treated as truth. |
 | Safety checks | Cross-tenant targets, disabled items, misc rows, conflicting IDs, active twins, weak aliases, and small score gaps are blocked. |
@@ -73,7 +75,7 @@ AUTO / REVIEW / REJECT
 
 Candidate retrieval and automatic matching are separate problems. Retrieval should aim for high recall in the top three. The decision stage should be conservative about choosing the first item.
 
-`AUTO` will require one safe item, enough confidence, and enough distance from the second item. `REVIEW` will be used when useful candidates remain but the proof is weak. `REJECT` will be used for clear non-item text or when no useful candidate is found.
+`AUTO` requires either one unique strong identifier or one safe candidate above both probabilistic limits. Duplicate identifiers, stale aliases, disabled targets, and conflicts always block the identifier lane. `REVIEW` is used when useful candidates remain but the proof is weak. `REJECT` is used for clear non-item text or when no useful candidate is found.
 
 The same input and catalogue version must always produce the same output. Ties will be sorted by stable fields such as item code. No network call will be used during matching.
 

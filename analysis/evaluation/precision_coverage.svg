@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="460" viewBox="0 0 760 460">
+<rect width="100%" height="100%" fill="white"/>
+<text x="380" y="28" text-anchor="middle" font-family="Arial" font-size="18">Precision versus coverage</text>
+<line x1="80" y1="50" x2="80" y2="390" stroke="#333"/>
+<line x1="80" y1="390" x2="730" y2="390" stroke="#333"/>
+<polyline points="117.1,50.0 123.3,62.1 129.5,60.6 131.1,60.3 134.2,59.7 135.7,59.4 137.3,59.2 138.8,58.9 141.9,58.5 143.5,58.3 162.0,69.2 163.6,68.9 165.1,74.7 185.2,70.0 186.8,69.7 188.3,74.3 196.1,68.1 197.6,67.9 199.2,72.1 214.6,69.5 217.7,72.9 219.3,76.4 253.3,68.2 256.4,70.9 258.0,73.7 261.1,76.2 264.2,81.4" fill="none" stroke="#1261a0" stroke-width="2"/>
+<text x="380" y="445" text-anchor="middle" font-family="Arial" font-size="13">Coverage</text>
+<text x="18" y="230" transform="rotate(-90 18 230)" text-anchor="middle" font-family="Arial" font-size="13">AUTO precision</text>
+<text x="80.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">0.0</text>
+<text x="72" y="394.0" text-anchor="end" font-family="Arial" font-size="11">0.00</text>
+<text x="210.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">0.2</text>
+<text x="72" y="326.0" text-anchor="end" font-family="Arial" font-size="11">0.20</text>
+<text x="340.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">0.4</text>
+<text x="72" y="258.0" text-anchor="end" font-family="Arial" font-size="11">0.40</text>
+<text x="470.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">0.6</text>
+<text x="72" y="190.0" text-anchor="end" font-family="Arial" font-size="11">0.60</text>
+<text x="600.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">0.8</text>
+<text x="72" y="122.0" text-anchor="end" font-family="Arial" font-size="11">0.80</text>
+<text x="730.0" y="410" text-anchor="middle" font-family="Arial" font-size="11">1.0</text>
+<text x="72" y="54.0" text-anchor="end" font-family="Arial" font-size="11">1.00</text>
+</svg>

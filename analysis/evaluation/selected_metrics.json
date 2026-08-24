@@ -1,0 +1,196 @@
+{
+  "metrics": {
+    "abstentions": 396,
+    "correct_auto": 24,
+    "correct_refusal_rate_blank": 1.0,
+    "coverage": 0.05714285714285714,
+    "cross_tenant_violations": 0,
+    "max_latency_ms": 49.58069999702275,
+    "net_cost_seconds": 15360,
+    "p50_latency_ms": 30.58929997496307,
+    "p95_latency_ms": 41.89770016819239,
+    "precision_auto": 1.0,
+    "precision_wilson_lower_95": 0.8620194241710247,
+    "recall_at_3_answerable": 0.9322033898305084,
+    "recall_at_3_reviewed": 0.9261992619926199,
+    "rows": 420,
+    "safety_block_auto_violations": 0,
+    "wrong_auto": 0
+  },
+  "normal_uncertainty_gate_passed": false,
+  "operating_point_allowed": true,
+  "reason_code": {
+    "active_twin": {
+      "coverage": 0.0,
+      "net_cost_seconds": 1080,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 27,
+      "wrong_auto": 0
+    },
+    "alias_current_unique": {
+      "coverage": 1.0,
+      "net_cost_seconds": -200,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 10,
+      "wrong_auto": 0
+    },
+    "alias_disabled_target": {
+      "coverage": 0.0,
+      "net_cost_seconds": 1320,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.696969696969697,
+      "rows": 33,
+      "wrong_auto": 0
+    },
+    "alias_not_trusted": {
+      "coverage": 0.0,
+      "net_cost_seconds": 320,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 8,
+      "wrong_auto": 0
+    },
+    "attribute_conflict": {
+      "coverage": 0.0,
+      "net_cost_seconds": 6200,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.9230769230769231,
+      "rows": 155,
+      "wrong_auto": 0
+    },
+    "barcode_unique": {
+      "coverage": 1.0,
+      "net_cost_seconds": -180,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 9,
+      "wrong_auto": 0
+    },
+    "identifier_ambiguous": {
+      "coverage": 0.0,
+      "net_cost_seconds": 80,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 2,
+      "wrong_auto": 0
+    },
+    "low_confidence": {
+      "coverage": 0.0,
+      "net_cost_seconds": 6040,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.9829059829059829,
+      "rows": 151,
+      "wrong_auto": 0
+    },
+    "not_an_item": {
+      "coverage": 0.0,
+      "net_cost_seconds": 800,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.0,
+      "rows": 20,
+      "wrong_auto": 0
+    },
+    "text_high_margin": {
+      "coverage": 1.0,
+      "net_cost_seconds": -100,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 5,
+      "wrong_auto": 0
+    }
+  },
+  "segment": {
+    "ambiguous_candidates": {
+      "coverage": 0.0,
+      "net_cost_seconds": 1360,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.7692307692307693,
+      "rows": 34,
+      "wrong_auto": 0
+    },
+    "identifier_present": {
+      "coverage": 0.24675324675324675,
+      "net_cost_seconds": 1940,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 0.8181818181818182,
+      "rows": 77,
+      "wrong_auto": 0
+    },
+    "noisy_text": {
+      "coverage": 0.037037037037037035,
+      "net_cost_seconds": 1020,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 27,
+      "wrong_auto": 0
+    },
+    "non_item_like": {
+      "coverage": 0.0,
+      "net_cost_seconds": 800,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.0,
+      "rows": 20,
+      "wrong_auto": 0
+    },
+    "pack_or_uom": {
+      "coverage": 0.01092896174863388,
+      "net_cost_seconds": 7200,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 0.9734513274336283,
+      "rows": 183,
+      "wrong_auto": 0
+    },
+    "plain_text": {
+      "coverage": 0.02666666666666667,
+      "net_cost_seconds": 2880,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 1.0,
+      "rows": 75,
+      "wrong_auto": 0
+    },
+    "sparse_text": {
+      "coverage": 0.0,
+      "net_cost_seconds": 160,
+      "precision_auto": 0.0,
+      "recall_at_3_answerable": 0.0,
+      "rows": 4,
+      "wrong_auto": 0
+    }
+  },
+  "selection_policy": "perfect_observed_small_sample",
+  "small_sample_risk_acknowledged": true,
+  "tenant": {
+    "acme": {
+      "coverage": 0.046153846153846156,
+      "net_cost_seconds": 9680,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 0.9080459770114943,
+      "rows": 260,
+      "wrong_auto": 0
+    },
+    "nordic": {
+      "coverage": 0.075,
+      "net_cost_seconds": 5680,
+      "precision_auto": 1.0,
+      "recall_at_3_answerable": 0.9669421487603306,
+      "rows": 160,
+      "wrong_auto": 0
+    }
+  },
+  "uncertainty": {
+    "coverage_95": [
+      0.028423772609819122,
+      0.09585492227979274
+    ],
+    "net_cost_seconds_95": [
+      12840.0,
+      17920.0
+    ],
+    "precision_auto_95": [
+      1.0,
+      1.0
+    ]
+  }
+}

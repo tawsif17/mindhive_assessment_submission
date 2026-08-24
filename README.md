@@ -1,5 +1,53 @@
 # Backend Developer — Mindhive Technical Assessment
 
+## Matcher and evaluation run guide
+
+Python 3.10 or later is required. All matching is local. No network call is made during inference.
+
+Install the pinned packages:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the tests:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+Run the grouped training evaluation:
+
+```bash
+python evaluate.py --data-dir data --out-dir analysis/evaluation
+```
+
+The evaluation creates `EVAL.md`, machine-readable results, two SVG charts, a completed 20-line review pack, and a frozen `matcher_config.json`. Training labels are used only by this command. Holdout rows are not loaded.
+
+The matcher can be called for one row:
+
+```python
+from matcher import Matcher, OrderLine
+
+matcher = Matcher.from_data_dir("data")
+result = matcher.match(OrderLine.from_dict(order_row))
+print(result.to_prediction_row())
+```
+
+Holdout generation requires the frozen training hash, completed review, and approved operating point in `matcher_config.json`:
+
+```bash
+python generate_predictions.py --config matcher_config.json --out predictions.csv
+```
+
+The final out-of-fold result made 24 automatic matches. All 24 were correct. Coverage was 5.7%, recall@3 was 93.2%, and p95 latency remained below the 250 ms budget; `EVAL.md` records the measured run. The normal Wilson uncertainty gate did not pass: its lower bound was 86.2%. The frozen configuration therefore uses the documented perfect-observed small-sample fallback and records that risk explicitly.
+
+The frozen holdout output contains 300 rows: 14 `auto`, 207 `review`, and 79 `reject`. The file passed schema, ownership, item-state, score-range, candidate-count, row-count, and determinism checks.
+
+## Tool use and review
+
+I used ChatGPT for planning, implementation support, and editing. I reviewed the code, checked the source evidence behind the analysis, ran the tests and evaluation, and take responsibility for every submitted decision and result.
+
 **Version:** 2026.1 · **Window:** 3 calendar days · **Expected effort:** 14–18 hours · **Format:** open book
 
 ---

@@ -1,0 +1,8 @@
+[
+  {"line_id":"ACM-T-0114","label_assessment":"wrong_false_blank","root_cause":"The active catalogue contains one Stallion #10 x 1-inch stainless item. Text and price support ACM-SELF0720."},
+  {"line_id":"ACM-T-0130","label_assessment":"wrong_false_blank","root_cause":"The description exactly matches active item ACM-SELF0072, and the order price is close to list price."},
+  {"line_id":"ACM-T-0150","label_assessment":"wrong_false_blank","root_cause":"Description and packet UOM exactly match active item ACM-SELF0108, with supporting price evidence."},
+  {"line_id":"ACM-T-0182","label_assessment":"wrong_false_blank","root_cause":"Brand, 15mm size, and Class E identify ACM-PVCP0541; the other active variants are Class C or D."},
+  {"line_id":"ACM-T-0015","label_assessment":"wrong_false_blank","root_cause":"Brand, 7-inch size, and Flap grade identify ACM-ANGL0280; the other active grades are Cutting and Grinding."},
+  {"line_id":"NRD-T-0009","label_assessment":"under_specified_label","root_cause":"NRD-FULL0174 and NRD-FULL0174B are active twins with the same visible name, barcode, UOM, and price. No bulk evidence selects one."}
+]

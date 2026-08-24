@@ -73,3 +73,87 @@ This file records choices that could reasonably have gone another way. Each choi
 **Evidence:** The training set contains 295 item labels and 125 blank labels. Acme and Nordic also have different blank-label rates. Repeated or grouped checks will reduce dependence on one small split.
 
 **Reversal trigger:** A fixed and much larger production test set may replace repeated out-of-fold checks when it is kept separate from all fitting and threshold work.
+
+## D-07 - Keep the lexical hybrid for ranked candidates
+
+**Context:** Exact rules, RapidFuzz, word TF-IDF, character TF-IDF, and a hybrid were measured. Exact rules had low coverage. RapidFuzz also missed many useful candidates.
+
+**Options:** (a) use one text method, (b) combine exact and lexical evidence, or (c) add embeddings.
+
+**Chose:** Option (b). Exact evidence, RapidFuzz, word TF-IDF, and character TF-IDF are combined. Their values are kept as separate evidence. A small ranker orders the combined set.
+
+**Evidence:** Character and word TF-IDF each reached 93.6% recall@3 on answerable rows. RapidFuzz reached 59.0%. The grouped hybrid ranker reached 93.2% recall@3. Repeated evaluation runs kept p95 matching time well below the 250 ms limit; `EVAL.md` records the submitted run.
+
+**Reversal trigger:** The retrieval mix will be changed if a simpler lane matches its recall@3 and safety results, or if a tested new lane gives a clear net-cost gain.
+
+## D-08 - Keep automatic matching disabled at the draft checkpoint
+
+**Context:** An automatic lane should not be released only because its observed precision looks high. The amount of supporting test data also matters.
+
+**Options:** (a) release the best observed point, (b) weaken the uncertainty gate, or (c) keep automatic matching disabled until the stated gates pass.
+
+**Chose:** Option (c). The draft config blocks automatic matching. Review candidates are still returned.
+
+**Evidence:** The safest measured point made 12 automatic matches and all 12 were correct. Its Wilson 95% lower bound was 75.7%. This was below the 92.7% economic floor. No tested point passed every gate.
+
+**Reversal trigger:** The choice will be reviewed after the 20-line manual review, a general matcher fix, or more independent labelled data. The supplied labels will not be changed in primary metrics.
+
+## D-09 - Allow a perfect observed small-sample fallback
+
+**Context:** The normal policy requires the Wilson 95% lower bound to stay above the 92.7% economic floor. A small automatic lane can be correct on every observed row and still fail this rule.
+
+**Options:** (a) keep every small lane blocked, (b) release the lowest-cost point even when it has known errors, or (c) allow only a point with 100% observed out-of-fold precision.
+
+**Chose:** Option (c). The normal Wilson policy is tried first. If it fails, the highest-coverage point with no observed wrong automatic match may be used. All tenant, item-state, ambiguity, and latency gates remain.
+
+**Evidence:** The draft found a perfect automatic lane with too few rows for the Wilson gate. Review also found that several supplied blank labels were false blanks. Keeping all automatic matching disabled would provide no operating value.
+
+**Reversal trigger:** The fallback will be removed when enough independent labelled data exists to apply the normal uncertainty rule, or if a wrong automatic match is found in the fallback lane.
+
+## D-10 - Let independent catalogue evidence clear a weak alias block
+
+**Context:** A weak or inferred alias was treated as a hard block even when complete catalogue evidence supported the same item. This caused safe candidates to be reviewed.
+
+**Options:** (a) always block weak aliases, (b) trust weak aliases directly, or (c) allow independent catalogue evidence to prove the item without trusting the alias.
+
+**Chose:** Option (c). Brand, all visible numbers, word evidence, and character evidence must agree. A weak alias cannot create an automatic match by itself.
+
+**Evidence:** `ACM-T-0008` and `ACM-T-0184` had the correct top item with matching visible attributes. Incomplete inferred-alias lines such as `ACM-T-0090` and `ACM-T-0253` remain blocked.
+
+**Reversal trigger:** The rule will be tightened if production errors show that independent catalogue evidence is not strong enough, or simplified if alias quality is enforced by contract.
+
+## D-11 - Normalise unit and each as piece UOM values
+
+**Context:** Catalogue piece units use names such as `Pcs`. Order lines also use `unit`, `each`, and `ea` for the same basic unit.
+
+**Options:** (a) treat every spelling as different, (b) map common piece words, or (c) ignore UOM conflicts.
+
+**Chose:** Option (b). Common piece words are normalised to `piece`. A piece request still conflicts with packet or length stock units.
+
+**Evidence:** The false conflict on `ACM-T-0038` used `unit` against `Pcs`. The packet and length conflicts on `ACM-T-0142`, `ACM-T-0212`, and `ACM-T-0218` remain unsafe after normalisation.
+
+**Reversal trigger:** The mapping will be moved to tenant data if tenants use these words with different business meanings.
+
+## D-12 - Separate unique identifiers from the text threshold
+
+**Context:** A global probability threshold left unique active barcodes and one trusted alias in review even after identifier collisions and unsafe targets had been removed.
+
+**Options:** (a) keep the global threshold for every lane, (b) lower the text threshold, or (c) let a unique safe identifier answer directly while retaining the text threshold.
+
+**Chose:** Option (c). Unique tenant-scoped item codes, barcodes, part numbers, and trusted aliases can create an automatic match. Duplicate identifiers, weak aliases, stale targets, disabled items, and cross-lane conflicts remain blocked.
+
+**Evidence:** Ten additional out-of-fold lines had a unique safe identifier; all ten matched the supplied item. The final point increased from 14 to 24 correct automatic matches, raised coverage from 3.3% to 5.7%, and reduced estimated cost from 15,960 to 15,360 seconds without changing recall@3.
+
+**Reversal trigger:** The lane will be disabled or narrowed if a confirmed identifier match is wrong or if identifier uniqueness is no longer guaranteed within a tenant snapshot.
+
+## D-13 - Enforce the evaluation baseline in code
+
+**Context:** Documented release thresholds do not stop a regression unless the evaluation command exits unsuccessfully.
+
+**Options:** (a) inspect the report manually, (b) test only schema and safety properties, or (c) commit a metric baseline and enforce it during evaluation.
+
+**Chose:** Option (c). The baseline pins the training hash and minimum precision, coverage, recall@3, and blank refusal rate, plus maximum cost, latency, wrong autos, and safety violations.
+
+**Evidence:** `evaluate.py` now exits non-zero when a metric crosses the committed limit. Unit tests cover metric and training-hash failures.
+
+**Reversal trigger:** A baseline changes only with a reviewed data or policy change recorded in this log.

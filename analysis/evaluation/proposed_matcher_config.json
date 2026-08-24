@@ -1,0 +1,23 @@
+{
+  "confidence_threshold": 1.0,
+  "holdout_run_allowed": false,
+  "label_issues": 6,
+  "margin_threshold": 0.0,
+  "normal_uncertainty_gate_passed": false,
+  "precision_policy": {
+    "fallback_observed_precision": 1.0,
+    "normal_observed_precision": 0.98,
+    "normal_wilson_lower_floor": 0.927
+  },
+  "precision_wilson_floor": 0.927,
+  "random_seed": 17,
+  "regression_gates_passed": true,
+  "review_complete": true,
+  "reviewed_lines": 20,
+  "selection_policy": "perfect_observed_small_sample",
+  "small_sample_risk_acknowledged_after_manual_review": true,
+  "status": "superseded_by_frozen_config",
+  "strategy": "hybrid",
+  "training_file_sha256": "8e4e983045926d01accac152d5df62c3af9d6726516999b4ef80e90dee370313",
+  "training_rows": 420
+}

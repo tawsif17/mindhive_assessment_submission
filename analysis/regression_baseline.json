@@ -1,0 +1,13 @@
+{
+  "allowed_selection_policies": ["full_uncertainty_policy", "perfect_observed_small_sample"],
+  "maximum_cross_tenant_violations": 0,
+  "maximum_net_cost_seconds": 15360,
+  "maximum_p95_latency_ms": 250.0,
+  "maximum_safety_block_auto_violations": 0,
+  "maximum_wrong_auto": 0,
+  "minimum_auto_precision": 1.0,
+  "minimum_blank_refusal_rate": 1.0,
+  "minimum_coverage": 0.05,
+  "minimum_recall_at_3_answerable": 0.922,
+  "training_file_sha256": "8e4e983045926d01accac152d5df62c3af9d6726516999b4ef80e90dee370313"
+}
